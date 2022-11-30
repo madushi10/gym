@@ -18,4 +18,10 @@ class Fine extends Model
      {
         return $this->belongTo(Booking::class);
      }
+     protected $fillable = [
+        'user_id',
+        'booking_id',
+        'status',
+        'amount',
+    ];
 }

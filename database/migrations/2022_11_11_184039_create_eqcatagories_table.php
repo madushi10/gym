@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('eqcatagories', function (Blueprint $table) {
             $table->id();
+            $table->string('eqpid');
+            $table->string('name');
             $table->string('sport');
             $table->unsignedInteger('quantity');
             $table->timestamps();
