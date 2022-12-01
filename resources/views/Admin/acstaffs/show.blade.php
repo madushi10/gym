@@ -9,7 +9,7 @@
             </div><br>
 
             <div class="pull-left">
-                <h2> Show Acadamic staff member</h2>
+                <h2> Show Acadamicc staff member</h2>
             </div>
         </div>
     </div>
