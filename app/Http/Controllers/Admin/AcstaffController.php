@@ -31,7 +31,7 @@ class AcstaffController extends Controller
 
 
 // $nurses = Nurse::latest()->paginate(5);
-return view('Admin.acstaff.index',compact('user_acstaffs'))
+return view('Admin.acstaffs.index',compact('user_acstaffs'))
 ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -96,7 +96,7 @@ return view('Admin.acstaff.index',compact('user_acstaffs'))
 
         $user->assignRole('acstaff');
 
-        return redirect()->route('acstaff.index')
+        return redirect()->route('acstaffs.index')
                         ->with('success','Acstaff created successfully.');
     }
 
@@ -111,7 +111,7 @@ return view('Admin.acstaff.index',compact('user_acstaffs'))
         $acstaff=Acstaff::find($id);
         $duser=$acstaff->user;
 
-        return view('admin.acstaffs.show',compact('acstaff','duser'));
+        return view('Admin.acstaffs.show',compact('acstaff','duser'));
     }
 
     /**
@@ -183,7 +183,7 @@ return view('Admin.acstaff.index',compact('user_acstaffs'))
 
         // $user->assignRole($request->input('roles'));
 
-        return redirect()->route('acstaff.index')
+        return redirect()->route('acstaffs.index')
                         ->with('success','Acstaff created successfully.');
     }
 

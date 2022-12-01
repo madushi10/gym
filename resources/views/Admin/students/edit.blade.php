@@ -1,11 +1,11 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container-fluid">
 
     <div class="container">
         <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('student.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('students.index') }}"> Back</a>
          </div><br>
 
         <div class="d-sm-flex justify-content-between align-items-center mb-4">
@@ -16,7 +16,7 @@
     <!-- Form creation -->
     <section>
     <div class="container">
-    <form action="{{ route('student.update',$student->id) }}" method="POST">
+    <form action="{{ route('students.update',$student->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="card shadow mb-3">
@@ -38,17 +38,17 @@
                     </div>
 
                     <div class="col-sm-12 col-md-4 col-lg-4">
-                        <div class="mb-3"><label class="form-label" for="NIC"><strong>NIC:&nbsp;</strong></label>
-                            <input class="form-control" type="text" id="NIC" placeholder="751584753v" name="nic" maxlength="12" value="{{ $student->NIC }}" required>
+                        <div class="mb-3"><label class="form-label" for="rejnumb"><strong>Student Registration number:&nbsp;</strong></label>
+                            <input class="form-control" type="text" id="rejnumb" placeholder="SC/0000/000000" name="rejnumb" maxlength="14" value="{{ $student->rejnumb }}" required>
                         </div>
-                        @error('NIC')
+                        @error('rejnumb')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
 
-                    <div class="col-sm-12 col-md-4 col-lg-4">
+                    {{-- <div class="col-sm-12 col-md-4 col-lg-4">
                         <div class="mb-3">
                             <label class="form-label" for="age"><strong>Age:</strong><br></label>
                             <input class="form-control" type="number" name="age" placeholder="25 years" min="20" max="80" value="{{ $student->age }}">
@@ -58,9 +58,9 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                          @enderror
-                    </div>
+                    </div> --}}
 
-                    <div class="mb-3"><label class="form-label" for="gender"><strong>Gender:</strong><br></label>
+                    {{-- <div class="mb-3"><label class="form-label" for="gender"><strong>Gender:</strong><br></label>
                         <div class="form-group mb-3">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" id="service_client_payment_validated-2" name="gender" value="male" {{ $student->gender == 'male' ? 'checked' : '' }} required>
@@ -76,9 +76,9 @@
                             </span>
                          @enderror
                         </div>
-                    </div>
+                    </div> --}}
 
-                    <div class="col-md-4">
+                    {{-- <div class="col-md-4">
                         <label class="form-label" for="client_description"><strong>Address:</strong><br></label>
                         <textarea class="form-control" id="service_description" rows="5" name="address" placeholder="No.31, Market Road, Main-Street, Matara."  required>{{$student->address}}</textarea>
                         @error('address')
@@ -87,7 +87,7 @@
                                 </span>
                              @enderror
                     </div>
-                    <br>
+                    <br> --}}
 
                     <div class="col-sm-12 col-md-4 col-lg-4">
                         <div class="mb-3"><label class="form-label" for="email"><strong>Email:&nbsp;</strong></label>
@@ -111,7 +111,7 @@
                              @enderror
                     </div>
 
-                    <div class="col-sm-12 col-md-4 col-lg-4">
+                    {{-- <div class="col-sm-12 col-md-4 col-lg-4">
                         <div class="mb-3"><label class="form-label" for="Position"><strong>Position</strong><br></label>
                             <input class="form-control" type="text" id="position" placeholder="Grade I" name="position" value="{{ $student->position }}" required>
                         </div>
@@ -131,7 +131,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                      @enderror
-                    </div>
+                    </div> --}}
 
                     {{-- <div class="mb-3"><label class="form-label" for="service_client_payment_validated"><strong>Status:</strong><br></label>
                         <div class="form-group mb-3">

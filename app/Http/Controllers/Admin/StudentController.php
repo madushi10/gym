@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Student;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -32,7 +33,7 @@ class StudentController extends Controller
 
 
 // $nurses = Nurse::latest()->paginate(5);
-return view('Admin.student.index',compact('user_students'))
+return view('Admin.students.index',compact('user_students'))
 ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -61,7 +62,7 @@ return view('Admin.student.index',compact('user_students'))
             //   }
             // }
 
-            return view('Admin.student.create');
+            return view('Admin.students.create');
         }
     }
 
@@ -126,7 +127,7 @@ return view('Admin.student.index',compact('user_students'))
          $student=Student::find($id);
          $duser=$student->user;
 
-         return view('admin.students.show',compact('student','duser'));
+         return view('Admin.students.show',compact('student','duser'));
     }
 
     /**
@@ -152,13 +153,13 @@ return view('Admin.student.index',compact('user_students'))
      */
     public function update(Request $request, $id)
     {
-        //
+         //
         request()->validate([
             'name'=> 'required',
             'email'=> 'required',
             'phone'=> 'required',
-            'password' => 'required|string|min:8|confirmed',
-            // 'file' => 'required',
+
+
         ]);
 
         $user = User::find($id);
@@ -166,13 +167,12 @@ return view('Admin.student.index',compact('user_students'))
         $user->name = $request->name;
         $user->email = $request->email;
 
-        if(!empty($input['password'])){
-            $input['password'] = Hash::make($input['password']);
+        if(!empty($request->password)){
+            $user->password = Hash::make($request->password);
         }else{
-            $input = Arr::except($input,array('password'));
-        }
+            $user = Arr::except($user, ['password']);
 
-        $user->password = Hash::make($request->password);
+        }
 
         $user->update();
 
@@ -182,16 +182,18 @@ return view('Admin.student.index',compact('user_students'))
         // $student->gender = $request->gender;
         // $student->position = $request->position;
 
-        // $student->NIC = $request->nic;
+        $student->rejnumb = $request->rejnumb;
         // $student->age = $request->age;
         // $student->specialization = $request->specialization;
 
-        // $imageName = time().'.'.$request->file->extension();
 
-        // $request->file->move(public_path('images'), $imageName);
+        if($request->hasFile('file')) {
+        $imageName = time().'.'.$request->file->extension();
 
-        // $student->photo_path = $imageName;
+        $request->file->move(public_path('images'), $imageName);
 
+        $student->photo_path = $imageName;
+        }
 
         $user->student()->update($student->toArray());
 
@@ -199,8 +201,9 @@ return view('Admin.student.index',compact('user_students'))
 
         // $user->assignRole($request->input('roles'));
 
-        return redirect()->route('student.index')
+        return redirect()->route('students.index')
                         ->with('success','Student created successfully.');
+
     }
 
     /**
@@ -211,9 +214,14 @@ return view('Admin.student.index',compact('user_students'))
      */
     public function destroy($id)
     {
-         //
+          //
 
-         $student = User::find($id);
-         $student->delete();
+        $user = User::find($id);
+        //dd($user->student);
+        $user->student()->delete();
+       // $user->delete();
+
+        return redirect()->route('students.index')
+        ->with('success','student deleted successfully');
     }
 }

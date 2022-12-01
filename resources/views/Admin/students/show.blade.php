@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 <div class="container">
     @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('student.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('students.index') }}"> Back</a>
             </div><br>
 
             <div class="pull-left">

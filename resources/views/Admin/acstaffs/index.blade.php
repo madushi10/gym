@@ -51,17 +51,14 @@
                             <td>{{$acstaff->phone}}</td>
                             <td>{{$acstaff->phone}}</td>
                             <td>
-                                <a class="btn btn-xs btn-primary" href="{{ route('acstaff.show',$acstaff->id) }}">
+                                <a class="btn btn-xs btn-primary" href="{{ route('acstaffs.show',$acstaff->id) }}">
                                     view
                                 </a>
 
-                                <a class="btn btn-xs btn-info" href="">
+                                <a class="btn btn-xs btn-info" href="{{ route('acstaffs.edit',$acstaff->id) }}">
                                     edit
                                 </a>
-
-
-
-                                <form action="" method="POST" onsubmit="" style="display: inline-block;">
+                                <form action="{{ route('acstaffs.destroy',$acstaff->user_id) }}" method="POST" onsubmit="" style="display: inline-block;">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="submit" class="btn btn-xs btn-danger" value="delete">

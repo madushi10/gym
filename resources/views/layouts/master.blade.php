@@ -27,9 +27,9 @@
                      <a href="#">User Rejistrations</a>
                     <a href="#">Sport</a>
                     <a href="#">Booking</a>
-                    <a href="#">Courses</a>
+                    <a href="{{ route('courses.index') }}"> Courses </a>
                     <a href="{{ route('news.index') }}"> News </a>
-                    <a href="#">Fines</a>
+                    <a href="{{ route('fines.index') }}"> Fines </a>
                     <a href="#">Settings</a>
                     <a href="#">History</a>
                     <a href="#"></a>

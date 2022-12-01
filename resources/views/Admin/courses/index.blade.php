@@ -34,7 +34,7 @@
 	    <tr>
 	        <td>{{ ++$i }}</td>
 	        <td>{{ $course->title }}</td>
-	        <td>{{ $course->description }}</td>
+	        <td>{{ $course->discription }}</td>
 	        <td>
                 <form action="{{ route('courses.destroy',$course->id) }}" method="POST">
                     <a class="btn btn-info" href="{{ route('courses.show',$course->id) }}">Show</a>

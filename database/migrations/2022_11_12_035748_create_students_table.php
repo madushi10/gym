@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('rejnumb');
             $table->string('phone');
             $table->string('email')->unique();
+            $table->string('photo_path');
             $table->timestamps();
             $table->softDeletes();
         });
