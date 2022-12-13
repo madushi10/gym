@@ -5,11 +5,11 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('acstaff.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('acstaffs.index') }}"> Back</a>
             </div><br>
 
             <div class="pull-left">
-                <h2> Show Acadamicc staff member</h2>
+                <h2> Show Acadamic staff member</h2>
             </div>
         </div>
     </div>

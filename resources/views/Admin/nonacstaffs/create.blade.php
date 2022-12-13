@@ -5,7 +5,7 @@
 
     <div class="container">
         <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('nonacstaff.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('nonacstaffs.index') }}"> Back</a>
          </div><br>
 
         <div class="d-sm-flex justify-content-between align-items-center mb-4">
@@ -16,7 +16,7 @@
     <!-- Form creation -->
     <section>
     <div class="container">
-    <form action="{{ route('nonacstaff.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('nonacstaffs.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="card shadow mb-3">
                 <div class="card-header py-3">
