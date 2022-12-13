@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Nonacstaff;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -31,7 +32,7 @@ class NonacstaffController extends Controller
 
 
 // $nurses = Nurse::latest()->paginate(5);
-return view('Admin.nonacstaff.index',compact('user_nonacstaffs'))
+return view('Admin.nonacstaffs.index',compact('user_nonacstaffs'))
 ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -59,7 +60,7 @@ return view('Admin.nonacstaff.index',compact('user_nonacstaffs'))
             //   }
             // }
 
-            return view('Admin.nonacstaff.create');
+            return view('Admin.nonacstaffs.create');
     }
 
     /**
@@ -85,18 +86,18 @@ return view('Admin.nonacstaff.index',compact('user_nonacstaffs'))
 
         $user->save();
 
-        $nonacstaff = new nonacstaff;
+        $nonacstaff = new Nonacstaff;
         $nonacstaff->phone = $request->phone;
-        $nonacstaff->address = $request->address;
-        $nonacstaff->specialization = $request->specialization;
-        $nonacstaff->photo_path = $request->file;
+        // $nonacstaff->address = $request->address;
+        // $nonacstaff->specialization = $request->specialization;
+        // $nonacstaff->photo_path = $request->file;
 
 
         $user->nonacstaff()->save($nonacstaff);
 
         $user->assignRole('nonacstaff');
 
-        return redirect()->route('nonacstaff.index')
+        return redirect()->route('nonacstaffs.index')
                         ->with('success','Nonacstaff created successfully.');
     }
 
@@ -162,19 +163,19 @@ return view('Admin.nonacstaff.index',compact('user_nonacstaffs'))
 
         $nonacstaff = new Nonacstaff;
         $nonacstaff->phone = $request->phone;
-        // $nonacstaff->address = $request->address;
-        // $nonacstaff->gender = $request->gender;
-        // $nonacstaff->position = $request->position;
+        // $acstaff->address = $request->address;
+        // $acstaff->gender = $request->gender;
+        // $acstaff->position = $request->position;
 
-        // $nonacstaff->NIC = $request->nic;
-        // $nonacstaff->age = $request->age;
-        // $nonacstaff->specialization = $request->specialization;
+        // $acstaff->NIC = $request->nic;
+        // $acstaff->age = $request->age;
+        // $acstaff->specialization = $request->specialization;
 
         // $imageName = time().'.'.$request->file->extension();
 
         // $request->file->move(public_path('images'), $imageName);
 
-        // $nonacstaff->photo_path = $imageName;
+        // $acstaff->photo_path = $imageName;
 
 
         $user->nonacstaff()->update($nonacstaff->toArray());
@@ -183,8 +184,8 @@ return view('Admin.nonacstaff.index',compact('user_nonacstaffs'))
 
         // $user->assignRole($request->input('roles'));
 
-        return redirect()->route('nonacstaff.index')
-                        ->with('success','nonacstaff created successfully.');
+        return redirect()->route('nonacstaffs.index')
+                        ->with('success','Noncstaff created successfully.');
     }
 
     /**
@@ -195,7 +196,14 @@ return view('Admin.nonacstaff.index',compact('user_nonacstaffs'))
      */
     public function destroy($id)
     {
-        $nonacstaff = User::find($id);
-        $nonacstaff->delete();
+        //
+
+        $user = User::find($id);
+        //dd($user->nonacstaff);
+        $user->nonacstaff()->delete();
+       // $user->delete();
+
+        return redirect()->route('nonacstaffs.index')
+        ->with('success','Nonacstaff deleted successfully');
     }
 }

@@ -56,7 +56,7 @@
                                 </a>
 
                                 <a class="btn btn-xs btn-info" href="{{ route('acstaffs.edit',$acstaff->id) }}">
-                                    edit
+                                    editt
                                 </a>
                                 <form action="{{ route('acstaffs.destroy',$acstaff->user_id) }}" method="POST" onsubmit="" style="display: inline-block;">
                                     <input type="hidden" name="_method" value="DELETE">
